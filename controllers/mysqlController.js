@@ -23,16 +23,20 @@ const connect_sendmail = db.getConnection()
     conn
       .query("SELECT cid,signature from event")
       .then((rows) => {
-        let list = [];
-        for (let i = 0; i < 24; i++) {
-          list.push(rows[i]);
-        }
-        console.log(list);
+        conn.query("SELECT count(*) as number from event").then((count)=>{
+          let size = count[0].number;
+          let list = [];
+          for (let i = (size - 10); i< size; i++) {
+            list.push(rows[i]);
+          }
+          // console.log(size);
+          // console.log(list);
+        });
         return conn.query("SELECT max(timestamp) as number from event");
       })
       .then((res) => {
         let content = formatDate(res[0].number);
-        console.log(content);
+        // console.log(content);
         // mailer.sendMail('SNORT ALERT', content);
         conn.end();
       })
