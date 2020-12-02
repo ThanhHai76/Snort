@@ -51,9 +51,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <% for (var i = 0; i < data.length; i++) { %>
+                        <% for (var i = data.length - 1; i >= 0; i--) { %>
                         <tr>
-                            <td><%= i + 1 %></td>
+                            <td><%= 10 - i %></td>
                             <td><%= data[i].cid %> </td>
                             <td><%= data[i].signature %> </td>
                             <td><%= data[i].timestamp %> </td>

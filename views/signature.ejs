@@ -46,18 +46,20 @@
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Sig id</th>
-                            <th>Sig name</th>
-                          
+                            <th>Sig_id</th>
+                            <th>Sig_name</th>
+                            <th>Sig_sid</th>
+                            <th>Sig_gid</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <% for (var i = 0; i < sig.length; i++) { %>
+                        <% for (var i = sig.length - 1; i >= 0 ; i--) { %>
                         <tr>
-                            <td><%= i + 1 %></td>
+                            <td><%= 10 - i %></td>
                             <td><%= sig[i].sig_id %> </td>
                             <td><%= sig[i].sig_name %> </td>
-                        
+                            <td><%= sig[i].sig_sid %> </td>
+                            <td><%= sig[i].sig_gid %> </td>
                         </tr>
                         <% }; %>
                     </tbody>

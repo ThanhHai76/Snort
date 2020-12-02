@@ -1,11 +1,12 @@
 const express = require("express");
 const router = express.Router();
-const sendMail = require("../controllers/mysqlController");
+const sendMail = require("../controllers/sendmailController");
 const db = require("../config/database");
 
-router.get("/", (req,res)=>{
-  res.render("home",{});
-})
+router.get("/", (req, res) => {
+  res.render("home", {});
+  sendMail;
+});
 
 router.get("/event", (req, res) => {
   db.getConnection()
@@ -26,7 +27,6 @@ router.get("/event", (req, res) => {
           });
         })
         .then(() => {
-          sendMail;
           conn.end();
         });
     })
@@ -41,7 +41,7 @@ router.get("/signature", (req, res) => {
   db.getConnection()
     .then((conn) => {
       conn
-        .query("SELECT sig_id, sig_name from signature")
+        .query("SELECT sig_id, sig_name, sig_sid, sig_gid from signature")
         .then((sig_db) => {
           conn
             .query("SELECT count(*) as number from signature")
@@ -55,7 +55,7 @@ router.get("/signature", (req, res) => {
             });
         })
         .then(() => {
-          sendMail;
+          // sendMail;
           conn.end();
         });
     })
@@ -72,11 +72,16 @@ router.get("/email", (req, res) => {
       conn
         .query("SELECT * from email")
         .then((info) => {
-          var data = info[0];
+          let data = [];
+          let size = info.length;
+          for(let i = 0 ; i < size ; i ++){
+            data.push(info[i])
+          }
+          // console.log(data);
           res.render("email", { data: data });
         })
         .then(() => {
-          sendMail;
+          // sendMail;
           conn.end();
         });
     })
@@ -95,11 +100,20 @@ router.post("/submit", (req, res) => {
     .then((conn) => {
       conn
         .query(
-          `INSERT INTO email(name,email,phone) VALUES('${name}','${email}','${phone}')`
+          `SELECT email FROM email WHERE email = '${email}'`
         )
-        .then((submit) => {
-          console.log("A user has just registered " + submit);
-          res.redirect("/success");
+        .then((email_sl) => {
+          if(email_sl == ''){
+            conn.query(`INSERT INTO email(name,email,phone) VALUES('${name}','${email}','${phone}')`).then(()=>{
+              console.log("A user has just registered ");
+              res.redirect("/success");
+            })
+          } else{
+            conn.query(`UPDATE email SET name = '${name}', email = '${email}', phone = '${phone}' WHERE email = '${email}'`).then(()=>{
+              console.log("User update success!");
+              res.redirect("/success");
+            })
+          }
         })
         .then(() => {
           conn.end();
