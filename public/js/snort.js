@@ -1,9 +1,12 @@
-var header = document.getElementById("navbar-nav");
-var li = header.getElementsByClassName("nav-item");
-for (var i = 0; i < li.length; i++){
-    li[i].addEventListener("click", function(){
-        var current = document.getElementsByClassName("active");
-        current[0].className = current[0].className.replace(" active", "");
-        this.className += " active";
-    });
-}
+let socket = io("http://localhost:3000");
+
+socket.on("send-alert", function (data) {
+  alert(data.data);
+});
+
+socket.on("check-reload", function () {
+  if (performance.navigation.type == performance.navigation.TYPE_RELOAD) {
+    socket.emit("reload", {});
+    //   alert("page reload");
+  }
+});

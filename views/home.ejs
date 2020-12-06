@@ -13,25 +13,46 @@
         <div class="container">
             <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-                 <div class="mt-3">
-                    <h1>Snort là gì ?</h1>
-                    <p>
-                        Snort là Hệ thống Ngăn chặn Xâm nhập Nguồn Mở (IPS) hàng đầu trên thế giới. Snort IPS sử dụng
-                        một loạt các quy tắc giúp xác định hoạt động mạng độc hại và sử dụng các quy tắc đó để tìm các
-                        gói phù hợp với chúng và tạo cảnh báo cho người dùng.
+                    <div class="mt-3">
+                        <h1>Snort là gì ?</h1>
+                        <p>
+                            Snort là Hệ thống Ngăn chặn Xâm nhập Nguồn Mở (IPS) hàng đầu trên thế giới. Snort IPS sử
+                            dụng
+                            một loạt các quy tắc giúp xác định hoạt động mạng độc hại và sử dụng các quy tắc đó để tìm
+                            các
+                            gói phù hợp với chúng và tạo cảnh báo cho người dùng.
 
-                        Snort cũng có thể được triển khai nội tuyến để dừng các gói này. Snort có ba mục đích sử dụng
-                        chính: Như một trình kiểm tra gói như tcpdump, như một trình ghi gói - hữu ích cho việc gỡ lỗi
-                        lưu lượng mạng, hoặc nó có thể được sử dụng như một hệ thống ngăn chặn xâm nhập mạng toàn diện.
-                        Snort có thể được tải xuống và định cấu hình để sử dụng cho cá nhân và doanh nghiệp.
-                    </p>
-                 </div>
+                            Snort cũng có thể được triển khai nội tuyến để dừng các gói này. Snort có ba mục đích sử
+                            dụng
+                            chính: Như một trình kiểm tra gói như tcpdump, như một trình ghi gói - hữu ích cho việc gỡ
+                            lỗi
+                            lưu lượng mạng, hoặc nó có thể được sử dụng như một hệ thống ngăn chặn xâm nhập mạng toàn
+                            diện.
+                            Snort có thể được tải xuống và định cấu hình để sử dụng cho cá nhân và doanh nghiệp.
+                        </p>
+                    </div>
                 </div>
+            </div>
+            <div>
+                <h2>Các chế độ thực thi :</h2>
+                <ul class="list-group">
+                    <li class="list-group-item">Sniffer Mode: <span class="text-danger">"snort -v"</span> </li>
+                    <li class="list-group-item">Packet Logger Mode: <span class="text-danger">"snort -l
+                            /var/log/snort"</span> </li>
+                    <li class="list-group-item">Network Instrusion Detection System mode – NIDS mode:
+                        Console: <span class="text-danger">"sudo snort A console -i eth0 -u snort -g snort -c
+                            /etc/snort/snort.conf"</span><br>
+                        Export to DB(MySQL): <span class="text-danger">"sudo snort -i eth0 -u snort -g snort -c
+                            /etc/snort/snort.conf"</span>
+                    </li>
+                    <li class="list-group-item">Inline Mode</li>
+                </ul>
             </div>
         </div>
 
     </main>
 
+    <script src="./js/snort.js"></script>
 </body>
 
 </html>

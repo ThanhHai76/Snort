@@ -1,11 +1,9 @@
 const express = require("express");
 const router = express.Router();
-const sendMail = require("../controllers/sendmailController");
 const db = require("../config/database");
 
 router.get("/", (req, res) => {
   res.render("home", {});
-  sendMail;
 });
 
 router.get("/event", (req, res) => {
@@ -23,6 +21,7 @@ router.get("/event", (req, res) => {
             res.render("event", {
               title: "Snort log information",
               data: data,
+              alert:"window.alert"
             });
           });
         })
@@ -55,7 +54,6 @@ router.get("/signature", (req, res) => {
             });
         })
         .then(() => {
-          // sendMail;
           conn.end();
         });
     })
@@ -79,9 +77,9 @@ router.get("/email", (req, res) => {
           }
           // console.log(data);
           res.render("email", { data: data });
+          // sendMail;
         })
         .then(() => {
-          // sendMail;
           conn.end();
         });
     })
