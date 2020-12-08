@@ -6,6 +6,7 @@ const db = require("./config/database");
 const server = require("http").Server(app);
 const io = require("socket.io")(server);
 const connect_sendmail = require("./controllers/sendmailController");
+const routes_post = require("./routes/routes_post");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -17,6 +18,7 @@ app.use("/", routes);
 io.on("connection", function (socket) {
   console.log("Co nguoi vua ket noi " + socket.id);
   connect_sendmail.sendmail(socket);
+  routes_post.success(socket);
 });
 
 const port = 3000;

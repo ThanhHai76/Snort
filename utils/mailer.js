@@ -13,9 +13,11 @@ const sendMail = (email, subject, content) => {
     from: "thanhhai",
     to: `${email}`, //gui den nhieu nguoi nhan
     subject: subject,
-    text: `i am nodejs send by thanhhai, i inform you: ${content} `,
+    text: `I am nodejs send by Thanh Hai, I inform you: ${content} `,
     //html: '<h2>Welcome </h2>'
   };
+
+  // console.log(email);
 
   return transporter.sendMail(mailOption, function (error, info) {
     if (error) {

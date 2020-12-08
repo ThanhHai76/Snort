@@ -1,0 +1,52 @@
+<div class="mt-3">
+    <div class="mb-3">
+        <h1>Receive Snort Alert via Email/Phone</h1>
+    </div>
+    <div class="mb-3">
+        <h3 class="mb-3">Current Email :</h3>
+
+        <div class="table-wrapper-scroll-y mt-2">
+            <table class="table table-bordered table-striped mb-0">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Phone</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for (var i = 0; i < email.length; i++) { %>
+                    <tr>
+                        <td><%= i + 1 %></td>
+                        <td><%= email[i].name %> </td>
+                        <td><%= email[i].email %> </td>
+                        <td><%= email[i].phone %> </td>
+                    </tr>
+                    <% }; %>
+                </tbody>
+
+            </table>
+        </div>
+
+    </div>
+    <div class="mb-5">
+        <h3>Register New Email :</h3>
+        <form action="/submit" method="POST">
+            <div class="form-group">
+                <label for="validationDefault01">Name</label>
+                <input type="text" class="form-control" name="name" id="validationDefault01" value="" required>
+            </div>
+            <div class="form-group">
+                <label for="validationDefault02">Email</label>
+                <input type="text" class="form-control" name="email" id="validationDefault02" value="" required>
+            </div>
+            <div class="form-group">
+                <label for="validationDefault02">Phone number</label>
+                <input type="text" class="form-control" name="phone" id="validationDefault02" value="" required>
+            </div>
+            <button class="btn btn-primary" type="submit">Submit form</button>
+        </form>
+    </div>
+
+</div>

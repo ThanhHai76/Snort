@@ -1,0 +1,27 @@
+<div class="mt-3">
+    <div class="mb-3">
+        <h1>Event of Snort</h1>
+    </div>
+    <div class="table-wrapper-scroll-y my-custom-scrollbar">
+        <table class="table table-white table-bordered table-striped mb-0">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Cid</th>
+                    <th>Signature</th>
+                    <th>Timestamp</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% for (var i = data.length - 1; i >= 0; i--) { %>
+                <tr>
+                    <td><%= 10 - i %></td>
+                    <td><%= data[i].cid %> </td>
+                    <td><%= data[i].signature %> </td>
+                    <td><%= data[i].timestamp %> </td>
+                </tr>
+                <% }; %>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -10,3 +10,16 @@
 .table-wrapper-scroll-y {
   display: block;
 }
+.container{
+  margin-top: 80px;
+}
+.text-right{
+  right: 50px;
+}
+a{
+  color: #7F8C8D;
+  /* text-transform: uppercase; */
+}
+a:hover{
+  color: #dddddd;
+}
