@@ -12,7 +12,7 @@ exports.sendmail = function (socket) {
           .query("SELECT max(timestamp) as max_time from event")
           .then((max) => {
             let max_time = max[0].max_time;
-            console.log("time to out " + formatDate(max_time));
+            // console.log("time to out " + formatDate(max_time));
             socket.emit("check-reload");
 
             let time_to_send = setInterval(() => {
@@ -34,7 +34,7 @@ exports.sendmail = function (socket) {
                         "Your laptop has a instrusion at " +
                         formatDate(time_latest),
                     });
-                    send_mail(formatDate(time_latest));
+                    send_mail(conn, time_latest);
                   }
                 });
             }
@@ -45,17 +45,6 @@ exports.sendmail = function (socket) {
             }
           });
       }
-
-      function send_mail(time) {
-        conn.query("SELECT email FROM email").then((list) => {
-          let list_email = [];
-          for (let i = 0; i < list.length; i++) {
-            list_email.push(list[i].email);
-            mailer.sendMail(list_email[i], "SNORT ALERT",  "Your laptop has a instrusion at " + time);
-          }
-          console.log("send mail to " + list_email);
-        });
-      }
     })
     .catch((err) => {
       //not connected
@@ -63,6 +52,21 @@ exports.sendmail = function (socket) {
       conn.end();
     });
 };
+
+function send_mail(conn, time) {
+  conn.query("SELECT email FROM email").then((list) => {
+    let list_email = [];
+    for (let i = 0; i < list.length; i++) {
+      list_email.push(list[i].email);
+      mailer.sendMail(
+        list_email[i],
+        "SNORT ALERT",
+        "Your laptop has a instrusion at " + time
+      );
+    }
+    console.log("send mail to " + list_email);
+  });
+}
 
 function formatDate(date) {
   // format the date
@@ -77,5 +81,5 @@ function formatDate(date) {
   ].map((component) => component.slice(-2)); // take last 2 digits of every component
 
   // join the components into date
-  return d.slice(3).join(":") + " " +  d.slice(0, 3).join(".");
+  return d.slice(3).join(":") + " " + d.slice(0, 3).join(".");
 }

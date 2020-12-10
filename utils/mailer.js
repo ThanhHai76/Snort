@@ -10,7 +10,7 @@ const sendMail = (email, subject, content) => {
   });
 
   const mailOption = {
-    from: "thanhhai",
+    from: "thanhhainodejsmailer@gmail.com",
     to: `${email}`, //gui den nhieu nguoi nhan
     subject: subject,
     text: `I am nodejs send by Thanh Hai, I inform you: ${content} `,

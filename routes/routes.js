@@ -32,7 +32,7 @@ router.get("/", (req, res) => {
                         email.push(info[i]);
                       }
 
-                      res.render("home", {
+                      res.render("index", {
                         title: "Snort log information",
                         data: data,
                         sig: sig,
@@ -137,10 +137,5 @@ router.get("/email", (req, res) => {
     });
 });
 
-router.get("/success", (req, res) => {
-  res.render("success", {
-    message: "You have just registered your email successfully",
-  });
-});
 
 module.exports = router;
