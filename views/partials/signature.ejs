@@ -1,11 +1,11 @@
 <div class="mt-3">
     <div class="mb-3">
-        <h1>Signature of Snort</h1>
+        <h2>Signature of Snort</h2>
     </div>
     <div class="table-wrapper-scroll-y my-custom-scrollbar mt-2">
         <table class="table table-bordered table-striped table-hover mb-0">
             <thead>
-                <tr>
+                <tr class="table-success">
                     <th>#</th>
                     <th>Sig_id</th>
                     <th>Sig_name</th>
@@ -16,7 +16,7 @@
             <tbody>
                 <% for (var i = sig.length - 1; i >= 0 ; i--) { %>
                 <tr>
-                    <td><%= 10 - i %></td>
+                    <td><%= sig.length - i %></td>
                     <td><%= sig[i].sig_id %> </td>
                     <td><%= sig[i].sig_name %> </td>
                     <td><%= sig[i].sig_sid %> </td>

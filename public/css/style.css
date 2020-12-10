@@ -2,10 +2,18 @@
 .nav-pills .show > .nav-link {
   background-color: #343a40;
 }
+.table thead th{
+  position: sticky;
+  top: 0;
+  /* background-color: #343a40; */
+}
 .my-custom-scrollbar {
   position: relative;
   height: 400px;
   overflow: auto;
+}
+.my-custom-scrollbar.email {
+  height: 180px;
 }
 .table-wrapper-scroll-y {
   display: block;

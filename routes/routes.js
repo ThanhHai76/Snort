@@ -8,40 +8,42 @@ router.get("/", (req, res) => {
       conn
         .query("SELECT cid, signature, timestamp from event")
         .then((rows) => {
-          conn.query("SELECT count(*) as number from event").then((count) => {
-            let size = count[0].number;
-            let data = [];
-            for (let i = size - 10; i < size; i++) {
-              data.push(rows[i]);
-            }
-            conn
-              .query("SELECT sig_id, sig_name, sig_sid, sig_gid from signature")
-              .then((sig_db) => {
-                conn
-                  .query("SELECT count(*) as number from signature")
-                  .then((count) => {
-                    let sig = [];
-                    let size = count[0].number;
-                    for (let i = size - 10; i < size; i++) {
-                      sig.push(sig_db[i]);
-                    }
-                    conn.query("SELECT * from email").then((info) => {
-                      let email = [];
-                      let size = info.length;
-                      for (let i = 0; i < size; i++) {
-                        email.push(info[i]);
-                      }
+          let size = rows.length;
+          let data = [];
+          for (let i = size - 50; i < size; i++) {
+            data.push(rows[i]);
+          }
+          conn
+            .query("SELECT sig_id, sig_name, sig_sid, sig_gid from signature")
+            .then((sig_db) => {
+              let sig = [];
+              let size = sig_db.length;
+              for (let i = size - 50; i < size; i++) {
+                sig.push(sig_db[i]);
+              }
+              conn.query("SELECT * from email").then((info) => {
+                let email = [];
+                let size = info.length;
+                for (let i = 0; i < size; i++) {
+                  email.push(info[i]);
+                }
+                conn.query("SELECT cid, ip_src, ip_dst, ip_id, ip_csum from iphdr").then((ip_db) => {
+                  let ip = [];
+                  let size = ip_db.length;
+                  for (let i = size - 50; i < size ; i++){
+                    ip.push(ip_db[i]);
+                  }
 
-                      res.render("index", {
-                        title: "Snort log information",
-                        data: data,
-                        sig: sig,
-                        email: email,
-                      });
-                    });
+                  res.render("index", {
+                    title: "Snort log information",
+                    data: data,
+                    sig: sig,
+                    ip: ip,
+                    email: email,
                   });
+                });
               });
-          });
+            });
         })
         .then(() => {
           conn.end();
@@ -136,6 +138,5 @@ router.get("/email", (req, res) => {
       conn.end();
     });
 });
-
 
 module.exports = router;

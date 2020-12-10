@@ -27,7 +27,7 @@ exports.sendmail = function (socket) {
                 .then((latest) => {
                   let time_latest = latest[0].time;
                   // console.log("time latest " + formatDate(time_latest));
-                  console.log(current);
+                  // console.log(current);
                   if (time_latest > max_time && current == 2) {
                     socket.emit("send-alert", {
                       data:
