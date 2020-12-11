@@ -7,11 +7,11 @@
             <thead>
                 <tr class="table-success">
                     <th>#</th>
-                    <th>cid</th>
-                    <th>ip_src</th>
-                    <th>ip_dst</th>
-                    <th>ip_id</th>
-                    <th>ip_csum</th>
+                    <th>Cid</th>
+                    <th>IP nguồn</th>
+                    <th>IP đích</th>
+                    <th>IP_id</th>
+                    <th>IP_csum</th>
                 </tr>
             </thead>
             <tbody>
@@ -19,8 +19,8 @@
                 <tr>
                     <td><%= ip.length - i %></td>
                     <td><%= ip[i].cid %> </td>
-                    <td><%= ip[i].ip_src %> </td>
-                    <td><%= ip[i].ip_dst %> </td>
+                    <td><%= ip_src[i] %> </td>
+                    <td><%= ip_dst[i] %> </td>
                     <td><%= ip[i].ip_id %> </td>
                     <td><%= ip[i].ip_csum %> </td>
                 </tr>

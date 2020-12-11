@@ -1,5 +1,6 @@
 const db = require("../config/database");
 const mailer = require("../utils/mailer");
+const convert = require("../utils/convert_IP");
 
 exports.sendmail = function (socket) {
   db.getConnection()
@@ -26,8 +27,13 @@ exports.sendmail = function (socket) {
                 .query("SELECT max(timestamp) as time from event")
                 .then((latest) => {
                   let time_latest = latest[0].time;
-                  // console.log("time latest " + formatDate(time_latest));
-                  // console.log(current);
+                  conn.query("SELECT ip_src, ip_dst from iphdr").then((ip)=>{
+                    let max = ip.length - 1;
+                    let ip_src = ip[max].ip_src;
+                    let ip_dst = ip[max].ip_dst;
+                    // console.log(convert.convert_Decimal_To_IPv4(ip_src), convert.convert_Decimal_To_IPv4(ip_dst));
+                  })
+
                   if (time_latest > max_time && current == 2) {
                     socket.emit("send-alert", {
                       data:

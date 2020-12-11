@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const db = require("../config/database");
+const convert = require("../utils/convert_IP");
 
 router.get("/", (req, res) => {
   db.getConnection()
@@ -27,21 +28,32 @@ router.get("/", (req, res) => {
                 for (let i = 0; i < size; i++) {
                   email.push(info[i]);
                 }
-                conn.query("SELECT cid, ip_src, ip_dst, ip_id, ip_csum from iphdr").then((ip_db) => {
-                  let ip = [];
-                  let size = ip_db.length;
-                  for (let i = size - 50; i < size ; i++){
-                    ip.push(ip_db[i]);
-                  }
+                conn
+                  .query(
+                    "SELECT cid, ip_src, ip_dst, ip_id, ip_csum from iphdr"
+                  )
+                  .then((ip_db) => {
+                    let ip = [];
+                    let ip_src = [];
+                    let ip_dst = [];
+                    let size = ip_db.length;
+                    for (let i = size - 50; i < size; i++) {
+                      ip.push(ip_db[i]);
+                      ip_src.push(convert.convert_Decimal_To_IPv4(ip_db[i].ip_src));
+                      ip_dst.push(convert.convert_Decimal_To_IPv4(ip_db[i].ip_dst));
+                    }
+                    // console.log(ip_src);
 
-                  res.render("index", {
-                    title: "Snort log information",
-                    data: data,
-                    sig: sig,
-                    ip: ip,
-                    email: email,
+                    res.render("index", {
+                      title: "Snort log information",
+                      data: data,
+                      sig: sig,
+                      ip: ip,
+                      ip_src: ip_src,
+                      ip_dst: ip_dst,
+                      email: email,
+                    });
                   });
-                });
               });
             });
         })

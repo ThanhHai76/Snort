@@ -46,7 +46,7 @@
             <tr>
               <th scope="row">3</th>
               <td >Network Instrusion Detection System mode – NIDS mode</td>
-              <td>Console: <span class="text-danger">"sudo snort A console -i eth0 -u snort -g snort
+              <td>Console: <span class="text-danger">"sudo snort -A console -i eth0 -u snort -g snort
                 -c
                 /etc/snort/snort.conf"</span><br>
             Export to DB(MySQL): <span class="text-danger">"sudo snort -i eth0 -u snort -g snort
@@ -60,44 +60,5 @@
             </tr>
           </tbody>
         </table>
-    </div>
-    <div class="mt-3">
-      <h2>Dấu hiệu nhận biết các kiểu tấn công:</h2>
-        <table class="table table-bordered table-striped table-hover">
-            <thead class="table-success">
-              <tr>
-                <th scope="col">#</th>
-                <th scope="col">Signature</th>
-                <th scope="col">Sig_sid</th>
-                <th scope="col">Detail</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <th scope="row">1</th>
-                <td>524</td>
-                <td>2000001</td>
-                <td>SYN Scan</td>
-              </tr>
-              <tr>
-                <th scope="row">2</th>
-                <td>535</td>
-                <td>10000001</td>
-                <td>ICMP Test</td>
-              </tr>
-              <tr>
-                <th scope="row">3</th>
-                <td >536</td>
-                <td>1000099</td>
-                <td>Ping of Death</td>
-              </tr>
-              <tr>
-                <th scope="row">4</th>
-                <td>537</td>
-                <td>1000101</td>
-                <td>Smurf</td>
-              </tr>
-            </tbody>
-          </table>
     </div>
 </div>
