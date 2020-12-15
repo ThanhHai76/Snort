@@ -19,11 +19,12 @@ exports.success = function (socket) {
                 )
                 .then(() => {
                   console.log("A user has just registered ");
-                  socket.emit(
-                    "success-message",
-                    {msg:"You have just registered your email successfully"}
-                  );
-                  setTimeout(res.redirect("/"),1000);
+                  socket.emit("success-message", {
+                    msg: "You have just registered your email successfully",
+                  });
+                  setTimeout(() => {
+                    res.redirect("/");
+                  }, 1500);
                 });
             } else {
               conn
@@ -32,11 +33,12 @@ exports.success = function (socket) {
                 )
                 .then(() => {
                   console.log("User update success!");
-                  socket.emit(
-                    "success-message",
-                    {msg:"You have just registered your email successfully"}
-                  );
-                  setTimeout(res.redirect("/"),1000);
+                  socket.emit("success-message", {
+                    msg: "You have just edited your email successfully",
+                  });
+                  setTimeout(() => {
+                    res.redirect("/");
+                  }, 1500);
                 });
             }
           })

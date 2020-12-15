@@ -1,13 +1,13 @@
 const db = require("../config/database");
 const mailer = require("../utils/mailer");
 const convert = require("../utils/convert_IP");
-const { attack } = require("express");
 
 exports.sendmail = function (socket) {
   db.getConnection()
     .then((conn) => {
       TimeToOut();
       let current = 0;
+
       function TimeToOut() {
         conn
           .query("SELECT max(timestamp) as max_time, max(cid) as max_cid from event")
@@ -18,7 +18,7 @@ exports.sendmail = function (socket) {
             let time_to_send = setInterval(() => {
               current++;
               TimeToSend();
-              if (current === 4) setTimeout(reset, 1000);
+              if (current === 3) reset();
             }, 1000);
 
             function TimeToSend() {
@@ -29,14 +29,13 @@ exports.sendmail = function (socket) {
                   )
                   .then((latest) => {
                     let attack;
+                    let time_latest = latest[0].time;
                     let sig = sig_db[0].signature;
                     if (sig == 524) attack = "SYN Scan";
                     if (sig == 535) attack = "ICMP test";
                     if (sig == 536) attack = "Ping of Death";
                     if (sig == 537) attack = "Smurf";
-                    let time_latest = latest[0].time;
                     console.log(current);
-
                     conn
                       .query("SELECT ip_src, ip_dst from iphdr")
                       .then((ip) => {
@@ -48,7 +47,7 @@ exports.sendmail = function (socket) {
                           ip[max].ip_dst
                         );
 
-                        if (time_latest > max_time && current === 2) {
+                        if (time_latest > max_time && current === 1) {
                           socket.emit("send-alert", {
                             data:
                               "Your laptop has a instrusion at " +

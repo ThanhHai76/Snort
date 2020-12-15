@@ -1,64 +1,65 @@
 <div class="mt-3">
-    <div>
-        <h2>Snort là gì ?</h2>
-        <p>
-            Snort là Hệ thống Ngăn chặn Xâm nhập Nguồn Mở (IPS) hàng đầu trên thế giới. Snort
-            IPS sử
-            dụng
-            một loạt các quy tắc giúp xác định hoạt động mạng độc hại và sử dụng các quy tắc đó
-            để tìm
-            các
-            gói phù hợp với chúng và tạo cảnh báo cho người dùng.
+  <div>
+    <h2>Snort là gì ?</h2>
+    <div class="alert alert-danger" role="alert"></div>
+    <p>
+      Snort là Hệ thống Phát hiện xâm nhập mã nguồn mở (IDS) hàng đầu trên thế giới. Snort
+      IDS sử
+      dụng
+      một loạt các quy tắc giúp xác định hoạt động mạng độc hại và sử dụng các quy tắc đó
+      để tìm
+      các
+      gói phù hợp với chúng và tạo cảnh báo cho người dùng.
 
-            Snort cũng có thể được triển khai nội tuyến để dừng các gói này. Snort có ba mục
-            đích sử
-            dụng
-            chính: Như một trình kiểm tra gói như tcpdump, như một trình ghi gói - hữu ích cho
-            việc gỡ
-            lỗi
-            lưu lượng mạng, hoặc nó có thể được sử dụng như một hệ thống ngăn chặn xâm nhập mạng
-            toàn
-            diện.
-            Snort có thể được tải xuống và định cấu hình để sử dụng cho cá nhân và doanh nghiệp.
-        </p>
-    </div>
-    <div>
-        <h2>Các chế độ thực thi :</h2>
-        <table class="table table-bordered table-striped table-hover">
-          <thead class="table-success">
-            <tr>
-              <th scope="col">#</th>
-              <th scope="col">Mode</th>
-              <th scope="col">Function</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Sniffer Mode</td>
-              <td>"snort -v"</td>
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Packet Logger Mode</td>
-              <td>"snort -l /var/log/snort"</td>
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td >Network Instrusion Detection System mode – NIDS mode</td>
-              <td>Console: <span class="text-danger">"sudo snort -A console -i eth0 -u snort -g snort
-                -c
-                /etc/snort/snort.conf"</span><br>
+      Snort cũng có thể được triển khai nội tuyến để dừng các gói này. Snort có ba mục
+      đích sử
+      dụng
+      chính: Như một trình kiểm tra gói như tcpdump, như một trình ghi gói - hữu ích cho
+      việc gỡ
+      lỗi
+      lưu lượng mạng, hoặc nó có thể được sử dụng như một hệ thống ngăn chặn xâm nhập mạng
+      toàn
+      diện.
+      Snort có thể được tải xuống và định cấu hình để sử dụng cho cá nhân và doanh nghiệp.
+    </p>
+  </div>
+  <div>
+    <h2>Các chế độ thực thi :</h2>
+    <table class="table table-bordered table-striped table-hover">
+      <thead class="table-success">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Mode</th>
+          <th scope="col">Function</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <th scope="row">1</th>
+          <td>Sniffer Mode</td>
+          <td>"snort -v"</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Packet Logger Mode</td>
+          <td>"snort -l /var/log/snort"</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td>Network Instrusion Detection System mode – NIDS mode</td>
+          <td>Console: <span class="text-danger">"sudo snort -A console -i eth0 -u snort -g snort
+              -c
+              /etc/snort/snort.conf"</span><br>
             Export to DB(MySQL): <span class="text-danger">"sudo snort -i eth0 -u snort -g snort
-                -c
-                /etc/snort/snort.conf"</span></td>
-            </tr>
-            <tr>
-              <th scope="row">4</th>
-              <td>Inline Mode</td>
-              <td></td>
-            </tr>
-          </tbody>
-        </table>
-    </div>
+              -c
+              /etc/snort/snort.conf"</span></td>
+        </tr>
+        <tr>
+          <th scope="row">4</th>
+          <td>Inline Mode</td>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 </div>
