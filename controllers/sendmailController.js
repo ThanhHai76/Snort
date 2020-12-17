@@ -28,6 +28,7 @@ exports.sendmail = function (socket) {
                     "SELECT max(timestamp) as time from event"
                   )
                   .then((latest) => {
+
                     let attack;
                     let time_latest = latest[0].time;
                     let sig = sig_db[0].signature;
@@ -36,6 +37,7 @@ exports.sendmail = function (socket) {
                     if (sig == 536) attack = "Ping of Death";
                     if (sig == 537) attack = "Smurf";
                     console.log(current);
+
                     conn
                       .query("SELECT ip_src, ip_dst from iphdr")
                       .then((ip) => {
