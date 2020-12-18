@@ -45,15 +45,6 @@ $(document).ready(function () {
     var name_edit =  $(this).parents("tr").find('.name input[type="text"]').val();
     var email_edit =  $(this).parents("tr").find('.email input[type="text"]').val();
     var phone_edit =  $(this).parents("tr").find('.phone input[type="text"]').val();
-    
-    if(name === undefined){
-      console.log(name_edit, email_edit, phone_edit);
-      socket.emit("add-user", {name: name_edit, email:email_edit, phone: phone_edit});
-    } else{
-      console.log(name,email,phone);
-      socket.emit("add-user", {name: name, email:email, phone: phone});
-    }
-
 
     var empty = false;
     var input = $(this).parents("tr").find('input[type="text"]');
@@ -67,6 +58,15 @@ $(document).ready(function () {
     });
     $(this).parents("tr").find(".error").first().focus();
     if (!empty) {
+
+      if(name === undefined ){
+        console.log(name_edit, email_edit, phone_edit);
+        socket.emit("add-user", {name: name_edit, email:email_edit, phone: phone_edit});
+      } else{
+        console.log(name,email,phone);
+        socket.emit("add-user", {name: name, email:email, phone: phone});
+      }
+      
       input.each(function () {
         $(this).parent("td").html($(this).val());
       });
