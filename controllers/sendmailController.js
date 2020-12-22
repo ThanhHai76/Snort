@@ -33,9 +33,10 @@ exports.sendmail = function (socket) {
                     let time_latest = latest[0].time;
                     let sig = sig_db[0].signature;
                     if (sig == 524) attack = "SYN Scan";
-                    if (sig == 535) attack = "ICMP test";
-                    if (sig == 536) attack = "Ping of Death";
-                    if (sig == 537) attack = "Smurf";
+                    else if (sig == 535) attack = "ICMP test";
+                    else if (sig == 536) attack = "Ping of Death";
+                    else if (sig == 537) attack = "Smurf";
+                    else attack = "Unknown Attack";
                     console.log(current);
 
                     conn
@@ -106,6 +107,7 @@ function formatDate(date) {
     "" + d.getFullYear(),
     "0" + d.getHours(),
     "0" + d.getMinutes(),
+    "0" + d.getSeconds()
   ].map((component) => component.slice(-2)); // take last 2 digits of every component
 
   // join the components into date
